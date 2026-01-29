@@ -80,3 +80,6 @@ $menuItems = $stmt->fetchAll();
 
 </body>
 </html>
+<?php
+include "../includes/footer.php";
+?>

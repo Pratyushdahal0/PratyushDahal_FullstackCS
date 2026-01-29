@@ -7,9 +7,8 @@
     header("Location: login.php");
     exit;
     }
-
+    
     $error = '';
-    $success = '';
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $dishName = $_POST['dishname'];
@@ -17,6 +16,31 @@
         $status = $_POST['status'];
 
         //validating is name is missing or not price is numeric or not also 
+        //checking dish name or price is empty or not
+        if($dishName === '' || $price ===''){
+            $error = "Dish name and price cannot be negative";
+        }else if(!is_numeric($price)){  //checking price is number or not
+            $error = "Price should be in number";
+        }
+        else if($price < 0){ //checking price negative or not
+            $error = "Price cannot be empty";
+        }else{
+            try{
+                //insterting 
+                $statement = $conn -> prepare("INSERT INTO menu (name, price, status)VALUES(?,?,?) ");
+                $statement-> bindValue(1, $dishName);
+                $statement-> bindValue(2, $price);
+                $statement-> bindValue(3, $status);
+                $statement->execute();
+		        $conn = null;
+                header("location:admin.php");
+            }catch(PDOException $e){
+                die("Database Error : ".$e-> getMessage());
+            }
+            
+
+            
+        }
     }
 
 

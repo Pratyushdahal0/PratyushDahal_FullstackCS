@@ -16,17 +16,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Password must be at least 6 characters";
     } else {
         try {
-            // 1️⃣ Check if email already exists
+            // Check if email already exists
             $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
             $stmt->execute([$email]);
 
             if ($stmt->fetch()) {
                 $error = "Email already registered";
             } else {
-                // 2️⃣ Hash the password
+                // Hash the password
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-                // 3️⃣ Insert into DB
+                //Insert into DB
                 $stmt = $conn->prepare("INSERT INTO users (email, password) VALUES (?, ?)");
                 $stmt->execute([$email, $hashedPassword]);
 
