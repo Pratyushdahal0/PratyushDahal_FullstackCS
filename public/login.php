@@ -1,15 +1,12 @@
 <?php
 require '../config/db.php';
-
 session_start();
-
 
 if(!isset($_SESSION['csrf_token'])){
     $_SESSION['csrf_token'] = bin2hex(random_bytes(16));
 }
 
 $error = '';
-
 
 try{
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -30,6 +27,7 @@ try{
         if($user){
             if(password_verify($password, $user['password'])){
                 session_regenerate_id(true);
+                $_SESSION['admin_logged_in']= true;
                 $_SESSION['user_id']= $user['id'];
                 header("location: admin.php");
                 exit;
