@@ -6,7 +6,7 @@ $password = "";
 //connecting to the database using pdo
 try{
     $conn = new PDO($server, $user, $password);
-    echo("connected");
+    //echo("connected");
 }catch(PDOException $e){
     die(" Database error : ".$e -> getMessage());
 }
