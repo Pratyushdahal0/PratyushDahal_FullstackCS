@@ -7,7 +7,7 @@
     header("Location: login.php");
     exit;
     }
-    
+
     $error = '';
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -18,12 +18,12 @@
         //validating is name is missing or not price is numeric or not also 
         //checking dish name or price is empty or not
         if($dishName === '' || $price ===''){
-            $error = "Dish name and price cannot be negative";
+            $error = "Dish name and price cannot be empty";
         }else if(!is_numeric($price)){  //checking price is number or not
             $error = "Price should be in number";
         }
         else if($price < 0){ //checking price negative or not
-            $error = "Price cannot be empty";
+            $error = "Price cannot be negative";
         }else{
             try{
                 //insterting 
@@ -71,6 +71,11 @@
     </select>
 
     <button type="submit">Add Item</button>
+
+    <!--Showing the error-->
+    <?php
+       echo $error;
+    ?>
 
     </form>
    
