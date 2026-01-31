@@ -40,9 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Price cannot be negative";
     } else {
         $stmt = $conn->prepare(
-        "UPDATE menu SET name=?, price=?, status=?, category=? WHERE id=?"
+        "UPDATE menu SET dishname=?, price=?, category=?, status=?  WHERE id=?"
         );
-        $stmt->execute([$dishName, $price, $status, $id, $category]);
+        $stmt->execute([$dishName, $price, $category, $status, $id]);
 
         header("Location: admin.php");
         exit;
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!--creating form-->
     <form method="POST">
     <label>Dish Name:</label><br>
-    <input type="text" name="dishname" value="<?= htmlspecialchars($item['name']) ?>" required><br><br>
+    <input type="text" name="dishname" value="<?= htmlspecialchars($item['dishname']) ?>" required><br><br>
 
     <label>Price (Rs.):</label><br>
     <input type="number" name="price" value="<?= htmlspecialchars($item['price']) ?>" required><br><br>
