@@ -2,7 +2,7 @@
 require "../config/db.php";
 include "../includes/header.php";
 
-$stmt = $conn->prepare("SELECT * FROM menu WHERE status = 'available'");
+$stmt = $conn->prepare("SELECT id, dishname AS name, price, status FROM menu WHERE status = 'available'");
 $stmt->execute();
 $menuItems = $stmt->fetchAll();
 
@@ -62,7 +62,7 @@ $menuItems = $stmt->fetchAll();
 <body>
 
 <h2 style="text-align:center;">Restaurant Menu</h2>
-
+<p style="text-align:center;">Current Order Items: <span id="cartCount">0</span></p>
 
 <div class="reviews-container">
 
@@ -72,12 +72,17 @@ $menuItems = $stmt->fetchAll();
     echo '<h3>' . htmlspecialchars($item['name'], ENT_QUOTES) . '</h3>';
     echo '<p><strong>Price:</strong> Rs. ' . number_format($item['price'], 2) . '</p>';
     echo '<p><strong>Status:</strong> ' . htmlspecialchars($item['status'], ENT_QUOTES) . '</p>';
-    echo '<button>Add Order</button>';
+    echo '<button class="order-btn" onclick="addToCart(' . $item['id'] . ')">Add</button>';
     echo '</div>';
     }
     ?>
 </div>
-
+<div style="text-align:center; margin:20px;">
+  <form action="checkout.php" method="POST">
+    <button class="order-btn">Place Order</button>
+  </form>
+</div>
+<script src="../assets/js/cart.js"></script>
 </body>
 </html>
 <?php

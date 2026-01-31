@@ -3,7 +3,7 @@
     session_start();
 
     //making sure only admin can use this
-    if (!isset($_SESSION['user_id'])) {
+    if (!isset($_SESSION['admin_logged_in'])) {
     header("Location: login.php");
     exit;
     }
@@ -14,6 +14,7 @@
         $dishName = $_POST['dishname'];
         $price = $_POST['price'];
         $status = $_POST['status'];
+        $category = $_POST['category'];
 
         //validating is name is missing or not price is numeric or not also 
         //checking dish name or price is empty or not
@@ -27,10 +28,12 @@
         }else{
             try{
                 //insterting 
-                $statement = $conn -> prepare("INSERT INTO menu (name, price, status)VALUES(?,?,?) ");
+                $statement = $conn -> prepare("INSERT INTO menu (dishname, price, category, status)VALUES(?,?,?,?) ");
                 $statement-> bindValue(1, $dishName);
-                $statement-> bindValue(2, $price);
-                $statement-> bindValue(3, $status);
+                $statement-> bindValue(2, $price);  
+                $statement-> bindValue(3, $category);
+                $statement-> bindValue(4, $status);
+                
                 $statement->execute();
 		        $conn = null;
                 header("location:admin.php");
@@ -63,6 +66,14 @@
     <label for="price">Price (Rs.):</label>
     <input type="number" name="price" required>
 
+    <!-- Category -->
+     <label for="category">Category:</label>
+     <select name="category">
+        <option value="starter">Starter</option>
+        <option value="main_course">Main Course</option>
+        <option value="beverages">Beverages</option>
+        <option value="dessert">Desserts</option>
+     </select>
     <!--For Status-->
     <label for="status">Status:</label>
     <select name="status">
