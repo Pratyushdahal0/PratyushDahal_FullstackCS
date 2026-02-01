@@ -1,4 +1,4 @@
-<?php
+<?php/*
 require '../config/db.php'; 
 
 $error = '';
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,4 +70,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <a href="login.php">Go to Login</a>
 
 </body>
-</html>
+</html> */
+?>

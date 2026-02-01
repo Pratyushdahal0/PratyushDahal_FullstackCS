@@ -19,98 +19,21 @@ $menuItems = $stmt->fetchAll();
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Menu</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-        }
-
-        .menu-container {
-            padding: 20px;
-        }
-
-        .menu-card {
-            display: inline-block;
-            width: 200px;
-            margin: 10px;
-            padding: 15px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
-            text-align: center;
-            vertical-align: top;
-        }
-
-        .menu-card h3 {
-            margin: 10px 0;
-        }
-
-        .price {
-            font-weight: bold;
-            color: green;
-        }
-
-        .order-btn {
-            margin-top: 10px;
-            padding: 8px 15px;
-            border: none;
-            background: #ff9800;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .order-btn:hover {
-            background: #e68900;
-        }
-        .cart-container {
-  display: flex;
-  align-items: center;
-  gap: 8px; /* space between icon and text */
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-}
-
-.cart-icon {
-  position: relative;
-  width: 30px;  /* size of the circle */
-  height: 30px;
-}
-
-.cart-icon img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%; /* makes image circular */
-  object-fit: cover;
-}
-#cartCount {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  background-color: red;
-  color: white;
-  font-size: 12px;
-  width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  font-weight: bold;
-}
-    </style>
+    <title>Menu</title> 
+    <!--linking google font-->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <!--linking google font-->
+    <link rel="stylesheet" href="../assets/css/index.css">
 </head>
-
 <body>
 
-<h2 style="text-align:center;">Restaurant Menu</h2>
-<div class="cart-container">
-  <span class="cart-icon">
-    <img src="assets/cart.png" alt="Cart">
+<h2 class="resturant_menu">Restaurant Menu</h2>
+<div class="cart_container">
+  <span class="cart_icon">
+    <span class="material-symbols-outlined">shopping_cart</span>
     <span id="cartCount"><?= $cartCount ?></span>
   </span>
-  <span class="cart-text">Cart</span>
+  <!--<span class="cart-text">Cart</span>-->
 </div>
 
 <div class="reviews-container">

@@ -106,3 +106,4 @@
     <p><a href="admin.php">Back to Admin Dashboard</a></p>
 </body>
 </html>
+<?php include "../includes/footer.php"; ?>

@@ -17,14 +17,7 @@ $orders = $stmt->fetchAll();
 <html>
 <head>
 <title>Admin Dashboard - Orders</title>
-<style>
-table { width: 80%; margin: 20px auto; border-collapse: collapse; }
-th, td { padding: 10px; border: 1px solid #ddd; text-align: center; }
-.status-preparing { color: orange; font-weight: bold; }
-.status-prepared { color: green; font-weight: bold; }
-.view-btn { padding: 4px 8px; background:#007bff; color:white; border:none; border-radius:3px; cursor:pointer; text-decoration:none; }
-.view-btn:hover { background:#0069d9; }
-</style>
+<link rel="stylesheet" href="../assets/css/adminpage.css">
 </head>
 <body>
 
@@ -63,3 +56,6 @@ th, td { padding: 10px; border: 1px solid #ddd; text-align: center; }
 
 </body>
 </html>
+<?php
+include "../includes/footer.php";
+?>

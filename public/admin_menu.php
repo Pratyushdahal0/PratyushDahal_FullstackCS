@@ -19,34 +19,7 @@ $menuItems = $stmt->fetchAll();
 <html>
 <head>
     <title>Admin Menu Management</title>
-    <style>
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            background: #fff;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ccc;
-            text-align: center;
-        }
-        th {
-            background: #f2f2f2;
-        }
-        .btn {
-            padding: 6px 10px;
-            text-decoration: none;
-            color: white;
-            border-radius: 4px;
-        }
-        .edit {
-            background: #4caf50;
-        }
-        .delete {
-            background: #f44336;
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/adminmenu.css">
 </head>
 
 <body>

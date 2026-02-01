@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+}
+
+.resturant_menu{
+    text-align:center;
+    color: rgb(232, 150, 26);
+}
+.menu-container {
+    padding: 20px;
+}
+
+.menu-card {
+    display: inline-block;
+    width: 200px;
+    margin: 10px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    text-align: center;
+    vertical-align: top;
+}
+
+.menu-card h3 {
+     margin: 10px 0;
+}
+
+.price {
+    font-weight: bold;
+    color: green;
+}
+
+.order-btn {
+    margin-top: 10px;
+    padding: 8px 15px;
+    border: none;
+    background: #ff9800;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.order-btn:hover {
+    background: #e68900;
+}
+.cart_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* space between icon and text */
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  padding: 15px;
+}
+
+.cart_icon {
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+
+#cartCount {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+}
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 26px;
+}
+footer p{
+    text-align: center;
+}

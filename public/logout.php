@@ -13,6 +13,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 <html>
 <head>
     <title>Logout</title>
+    <link rel="stylesheet" href="../assets/css/logout.css">
 </head>
 <body>
 
@@ -27,3 +28,4 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 </body>
 </html>
+<?php include "../includes/footer.php"; ?>

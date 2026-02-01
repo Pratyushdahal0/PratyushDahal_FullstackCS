@@ -1,3 +1,3 @@
 <footer>
-  <p>&copy; Resturant Ordering System</p>
+  <p>&copy; Resturant Ordering System Pratyush Dahal</p>
 </footer>

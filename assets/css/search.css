@@ -1,0 +1,159 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffae6;
+    margin: 0;
+    padding: 0;
+}
+
+.filter-section {
+    background: white;
+    padding: 20px;
+    margin: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.filter-section h3 {
+    text-align: center;
+    color: #2d8659;
+    margin: 0 0 20px 0;
+}
+
+form {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+input[type="number"],
+select {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    min-width: 140px;
+}
+
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    border-color: #4caf50;
+}
+
+button[type="submit"] {
+    padding: 10px 25px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+form a {
+    padding: 10px 25px;
+    background-color: #ff9800;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+form a:hover {
+    background-color: #e68900;
+}
+
+.menu-container {
+    padding: 30px 20px;
+    text-align: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.menu-card {
+    display: inline-block;
+    width: 220px;
+    margin: 15px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    vertical-align: top;
+    border: 2px solid #f4d03f;
+}
+
+.menu-card h3 {
+    margin: 10px 0;
+    color: #2d8659;
+    font-size: 18px;
+}
+
+.price {
+    font-weight: bold;
+    color: #ff9800;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.menu-card p {
+    color: #666;
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.quantity-input {
+    width: 60px;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.order-btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.order-btn:hover {
+    background-color: #45a049;
+}
+
+.no-results {
+    text-align: center;
+    color: #666;
+    padding: 60px 20px;
+    font-size: 18px;
+}
+footer p{
+    text-align: center;
+}

@@ -15,32 +15,49 @@ try {
     $orders = [];
 }
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History</title>
+    <link rel="stylesheet" href="../assets/css/adminorderhis.css">
+</head>
+<body>
+    <h2>Order History</h2>
 
-<h2 style="text-align:center;">Order History</h2>
-
-<?php if(empty($orders)): ?>
-<p style="text-align:center;">No orders yet.</p>
-<?php else: ?>
-<table style="width:90%;margin:20px auto;background:#fff;border-collapse:collapse;">
-<tr>
-    <th style="padding:10px;border-bottom:1px solid #eee;">Order ID</th>
-    <th style="padding:10px;border-bottom:1px solid #eee;">Status</th>
-    <th style="padding:10px;border-bottom:1px solid #eee;">Total</th>
-    <th style="padding:10px;border-bottom:1px solid #eee;">Date</th>
-</tr>
-
-<?php foreach($orders as $o): ?>
-<tr>
-    <td style="padding:10px;text-align:center;"><?= (int)$o['id'] ?></td>
-    <td style="padding:10px;text-align:center; 
-        <?= $o['status']=='Prepared' ? 'color:green;font-weight:bold;' : 'color:orange;font-weight:bold;' ?>">
-        <?= htmlspecialchars($o['status']) ?>
-    </td>
-    <td style="padding:10px;text-align:center;">Rs. <?= number_format($o['total_price'],2) ?></td>
-    <td style="padding:10px;text-align:center;"><?= htmlspecialchars($o['created_at']) ?></td>
-</tr>
-<?php endforeach; ?>
-</table>
-<?php endif; ?>
+    <?php if(empty($orders)): ?>
+        <p>No orders yet.</p>
+    <?php else: ?>
+        <table>
+            <tr>
+                <th>Order ID</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th>Date</th>
+            </tr>
+            
+            <?php foreach($orders as $o): ?>
+                <?php
+                if($o['status'] == 'Prepared'){
+                    $statusClass = 'prepared';
+                } else {
+                    $statusClass = 'preparing';
+                }
+                ?>
+                <tr>
+                    <td><?= $o['id'] ?></td>
+                    <td class="<?= $statusClass ?>">
+                        <?= htmlspecialchars($o['status']) ?>
+                    </td>
+                    <td>Rs. <?= number_format($o['total_price'], 2) ?></td>
+                    <td><?= htmlspecialchars($o['created_at']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+            
+        </table>
+    <?php endif; ?>
+</body>
+</html>
 
 <?php include "../includes/footer.php"; ?>

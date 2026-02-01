@@ -10,7 +10,7 @@ require '../config/db.php';
 
 // Handle status update
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['status'])){
-    $orderId = (int)$_POST['order_id'];
+    $orderId = $_POST['order_id'];
     $newStatus = $_POST['status'];
     $allowed = ['Preparing','Prepared'];
     if(in_array($newStatus, $allowed)){
@@ -29,18 +29,7 @@ $orders = $stmt->fetchAll();
 <html>
 <head>
 <title>Admin - Order Status</title>
-<style>
-body { font-family: Arial, sans-serif; background:#f5f5f5; padding:20px; }
-table { width:90%; margin:20px auto; border-collapse: collapse; background:#fff; }
-th, td { padding:10px; border:1px solid #ddd; text-align:center; }
-th { background:#ff9800; color:white; }
-select { padding:5px; }
-button { padding:5px 10px; background:#28a745; color:white; border:none; border-radius:3px; cursor:pointer; }
-button:hover { background:#218838; }
-.message { text-align:center; color:green; margin:10px 0; }
-.status-preparing { color: orange; font-weight:bold; }
-.status-prepared { color: green; font-weight:bold; }
-</style>
+<link rel="stylesheet" href="../assets/css/adminorderstatus.css">
 </head>
 <body>
 
@@ -85,3 +74,6 @@ button:hover { background:#218838; }
 
 </body>
 </html>
+<?php 
+include "../includes/footer.php"
+?>

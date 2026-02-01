@@ -55,6 +55,7 @@ try{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
+    <link rel="stylesheet" href="../assets/css/login.css">
 </head>
 <body>
     <!--Form -->
@@ -79,6 +80,7 @@ try{
         <button type="submit">Login</button>
     </form>
           <!--Signup ko lagi ho-->
-          <p>Don't have an account yet? <a href="signup.php">Sign up</a></p>
+         <!--<p>Don't have an account yet? <a href="signup.php">Sign up</a></p>-->
 </body>
 </html>
+<?php include "../includes/footer.php"; ?>

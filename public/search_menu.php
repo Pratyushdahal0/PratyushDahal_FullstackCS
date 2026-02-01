@@ -2,7 +2,6 @@
 require "../config/db.php";
 include "../includes/header.php";
 
-/* ---------- Filters (your preferred style) ---------- */
 
 $min_price = 0;
 if (isset($_GET['min_price'])) {
@@ -24,13 +23,10 @@ if (isset($_GET['status'])) {
     $status = $_GET['status'];
 }
 
-/* ---------- Build query FIRST ---------- */
-
 $sql = "SELECT id, dishname, price, cuisine, status
         FROM menu
         WHERE status = ?
         AND price BETWEEN ? AND ?";
-
 $params = [$status, $min_price, $max_price];
 
 if ($cuisine !== '') {
@@ -38,136 +34,78 @@ if ($cuisine !== '') {
     $params[] = $cuisine;
 }
 
-/* ---------- Execute query ---------- */
-
 $menus = [];
-
 if (!empty($_GET)) {
     $stmt = $conn->prepare($sql);
     $stmt->execute($params);
-    $menus = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $menus = $stmt->fetchAll();
 }
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Filter Menu</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Menu</title>
+    <link rel="stylesheet" href="../assets/css/search.css">
 </head>
 <body>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-}
+    <div class="filter-section">
+        <h3>Search and Filter Menu</h3>
+        <form method="GET">
+            <div class="form-group">
+                <label>Min Price:</label>
+                <input type="number" name="min_price" min="0" placeholder="0" value="<?= htmlspecialchars($min_price) ?>">
+            </div>
+            
+            <div class="form-group">
+                <label>Max Price:</label>
+                <input type="number" name="max_price" min="0" placeholder="10000" value="<?= htmlspecialchars($max_price) ?>">
+            </div>
+            
+            <div class="form-group">
+                <label>Cuisine:</label>
+                <select name="cuisine">
+                    <option value="">All</option>
+                    <option value="Indian" <?= $cuisine=='Indian'?'selected':'' ?>>Indian</option>
+                    <option value="Italian" <?= $cuisine=='Italian'?'selected':'' ?>>Italian</option>
+                    <option value="Chinese" <?= $cuisine=='Chinese'?'selected':'' ?>>Chinese</option>
+                    <option value="Nepali" <?= $cuisine=='Nepali'?'selected':'' ?>>Nepali</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Status:</label>
+                <select name="status">
+                    <option value="available">Available</option>
+                </select>
+            </div>
+            
+            <button type="submit">Apply Filters</button>
+            <a href="index.php">Back to menu</a>
+        </form>
+    </div>
 
-.menu-container {
-    padding: 20px;
-}
-
-.menu-card {
-    display: inline-block;
-    width: 200px;
-    margin: 10px;
-    padding: 15px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    text-align: center;
-    vertical-align: top;
-}
-
-.menu-card h3 {
-    margin: 10px 0;
-}
-
-.price {
-    font-weight: bold;
-    color: black;
-}
-
-.order-btn {
-    margin-top: 10px;
-    padding: 8px 15px;
-    border: none;
-    background: #ff9800;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.order-btn:hover {
-    background: #e68900;
-}
-
-.filter-form {
-    margin: 20px;
-    padding: 15px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-}
-.filter-form input,
-.filter-form select,
-.filter-form button {
-    padding: 6px 10px;
-    margin-top: 5px;
-}
-</style>
-<h3>Filter Menu</h3>
-
-<form method="GET">
-
-<label>Min:</label><br>
-<input type="number" name="min_price" min="0"><br><br>
-
-<label>Max:</label><br>
-<input type="number" name="max_price" min="0"><br><br>
-
-<label>Cuisine:</label><br>
-<select name="cuisine">
-    <option value="">All</option>
-    <option value="Indian">Indian</option>
-    <option value="Italian">Italian</option>
-    <option value="Chinese">Chinese</option>
-    <option value="Nepali">Nepali</option>
-</select><br><br>
-
-<label>Status:</label><br>
-<select name="status">
-    <option value="available">Available</option>
-    <!--<option value="unavailable">Unavailable</option>-->
-</select><br><br>
-
-<button type="submit">Apply</button>
-<a href="index.php">Back to menu</a>
-
-</form>
-
-<?php if (!empty($_GET)): ?>
-
-<h3 style="text-align:center;">Menu Items</h3>
-
-<div class="menu-container">
-<?php if (!empty($menus)): ?>
-    <?php foreach ($menus as $item): ?>
-        <div class="menu-card">
-            <h3><?= htmlspecialchars($item['dishname']) ?></h3>
-            <p class="price">Price: Rs<?= number_format($item['price'], 2) ?></p>
-            <p>Status: <?= htmlspecialchars($item['status']) ?></p>
-            <label for="quantity">Quantity:</label>
-            <input type="number" name="qty" min="1" value="1" class="quantity-input" id="qty_<?= $item['id'] ?>">
-            <button type="button" class="order-btn" onclick="addToCart(<?= $item['id'] ?>)">Add</button>
+    <?php if (!empty($_GET)): ?>
+        <div class="menu-container">
+            <?php if (!empty($menus)): ?>
+                <?php foreach ($menus as $item): ?>
+                    <div class="menu-card">
+                        <h3><?= htmlspecialchars($item['dishname']) ?></h3>
+                        <p class="price">Rs. <?= number_format($item['price'], 2) ?></p>
+                        <p>Cuisine: <?= htmlspecialchars($item['cuisine']) ?></p>
+                        <p>Status: <?= htmlspecialchars($item['status']) ?></p>
+                        <label for="qty_<?= $item['id'] ?>">Quantity:</label>
+                        <input type="number" name="qty" min="1" value="1" class="quantity-input" id="qty_<?= $item['id'] ?>">
+                        <button type="button" class="order-btn" onclick="addToCart(<?= $item['id'] ?>)">Add to Cart</button>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="no-results">No menu items found matching based on your filter</p>
+            <?php endif; ?>
         </div>
-    <?php endforeach; ?>
-<?php else: ?>
-    <p style="text-align:center;">No menu found.</p>
-<?php endif; ?>
-</div>
-<?php endif; ?>
-
+    <?php endif; ?>
 </body>
 </html>
+
+<?php include "../includes/footer.php"; ?>
