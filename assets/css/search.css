@@ -5,10 +5,55 @@ body {
     padding: 0;
 }
 
+.resturant_menu {
+    text-align: center;
+    color: #2d8659;
+    margin: 20px 0;
+}
+
+.cart_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    padding: 15px;
+}
+
+.cart_icon {
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+
+#cartCount {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 26px;
+}
+
 .filter-section {
     background: white;
     padding: 20px;
-    margin: 0;
+    margin: 0 0 20px 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
@@ -84,6 +129,7 @@ form a:hover {
     background-color: #e68900;
 }
 
+/* Menu Container */
 .menu-container {
     padding: 30px 20px;
     text-align: center;
@@ -140,11 +186,17 @@ form a:hover {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    width: 100%;
+    width: 150px;
     margin-top: 10px;
 }
 
 .order-btn:hover {
+    background-color: #45a049;
+}
+
+/* Place Order Button */
+
+.place-order-btn:hover {
     background-color: #45a049;
 }
 
@@ -154,6 +206,7 @@ form a:hover {
     padding: 60px 20px;
     font-size: 18px;
 }
-footer p{
+
+footer p {
     text-align: center;
 }

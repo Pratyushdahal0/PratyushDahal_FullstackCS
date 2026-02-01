@@ -1,8 +1,18 @@
 <?php
+session_start();
 require "../config/db.php";
 include "../includes/header.php";
 
+// Initialize cart
+if(!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
 
+// Count cart items
+$cartCount = 0;
+foreach($_SESSION['cart'] as $item) {
+    $cartCount += $item['quantity'];
+}
+
+// Filter parameters
 $min_price = 0;
 if (isset($_GET['min_price'])) {
     $min_price = $_GET['min_price'];
@@ -23,6 +33,7 @@ if (isset($_GET['status'])) {
     $status = $_GET['status'];
 }
 
+// Build query
 $sql = "SELECT id, dishname, price, cuisine, status
         FROM menu
         WHERE status = ?
@@ -34,6 +45,7 @@ if ($cuisine !== '') {
     $params[] = $cuisine;
 }
 
+// Execute query
 $menus = [];
 if (!empty($_GET)) {
     $stmt = $conn->prepare($sql);
@@ -47,9 +59,21 @@ if (!empty($_GET)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/search.css">
 </head>
 <body>
+    <h2 class="resturant_menu">Search Menu</h2>
+    
+    <!-- Cart Display -->
+    <div class="cart_container">
+        <span class="cart_icon">
+            <span class="material-symbols-outlined">shopping_cart</span>
+            <span id="cartCount"><?= $cartCount ?></span>
+        </span>
+    </div>
+    
+    <!-- Filter Section -->
     <div class="filter-section">
         <h3>Search and Filter Menu</h3>
         <form method="GET">
@@ -86,6 +110,7 @@ if (!empty($_GET)) {
         </form>
     </div>
 
+    <!-- Menu Items -->
     <?php if (!empty($_GET)): ?>
         <div class="menu-container">
             <?php if (!empty($menus)): ?>
@@ -97,14 +122,23 @@ if (!empty($_GET)) {
                         <p>Status: <?= htmlspecialchars($item['status']) ?></p>
                         <label for="qty_<?= $item['id'] ?>">Quantity:</label>
                         <input type="number" name="qty" min="1" value="1" class="quantity-input" id="qty_<?= $item['id'] ?>">
-                        <button type="button" class="order-btn" onclick="addToCart(<?= $item['id'] ?>)">Add to Cart</button>
+                        <button type="button" class="order-btn" onclick="addToCart(<?= $item['id'] ?>)">Add</button>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p class="no-results">No menu items found matching based on your filter</p>
+                <p class="no-results">No menu items found matching your filter</p>
             <?php endif; ?>
         </div>
     <?php endif; ?>
+
+    <!-- order place garni button -->
+    <div style="text-align:center; margin:20px;">
+        <form action="checkout.php" method="POST">
+            <button class="order-btn">Place Order</button>
+        </form>
+    </div>
+
+    <script src="../assets/js/cart.js"></script>
 </body>
 </html>
 
