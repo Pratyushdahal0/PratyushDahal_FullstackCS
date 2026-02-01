@@ -1,11 +1,18 @@
-function addToCart(id) {
-  fetch("../ajax/cart.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ item_id: id })
-  })
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("cartCount").innerText = data.count;
-  });
+function addToCart(itemId){
+    const qtyInput = document.getElementById('qty_' + itemId);
+    const quantity = parseInt(qtyInput.value) || 1;
+
+    const formData = new FormData();
+    formData.append('item_id', itemId);
+    formData.append('quantity', quantity);
+
+    fetch('../ajax/cart.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById('cartCount').textContent = data.totalQty;
+    })
+    .catch(err => console.error(err));
 }

@@ -6,8 +6,8 @@
 
     <!-- Waiter Navigation -->
     <div>
-        <a href="menu.php">  Menu </a>
-        <a href="orders.php"> Orders </a>
+        <a href="index.php">  Menu </a>
+       <a href="search_menu.php"> Search Menu </a>
         <a href="login.php"> Admin Login </a>
     </div>
 

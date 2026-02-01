@@ -15,6 +15,7 @@
         $price = $_POST['price'];
         $status = $_POST['status'];
         $category = $_POST['category'];
+        $cuisine = $_POST['cuisine'];
 
         //validating is name is missing or not price is numeric or not also 
         //checking dish name or price is empty or not
@@ -28,11 +29,13 @@
         }else{
             try{
                 //insterting 
-                $statement = $conn -> prepare("INSERT INTO menu (dishname, price, category, status)VALUES(?,?,?,?) ");
+                $statement = $conn -> prepare("INSERT INTO menu (dishname, cuisine, price, category, status)VALUES(?,?,?,?,?) ");
                 $statement-> bindValue(1, $dishName);
-                $statement-> bindValue(2, $price);  
-                $statement-> bindValue(3, $category);
-                $statement-> bindValue(4, $status);
+                $statement-> bindValue(2, $cuisine);  
+                $statement-> bindValue(3, $price);  
+                $statement-> bindValue(4, $category);
+                $statement-> bindValue(5, $status);
+
                 
                 $statement->execute();
 		        $conn = null;
@@ -62,6 +65,15 @@
     <label for="dishname">Dish Name:</label>
     <input type="text" name="dishname" required>
 
+    <label for="cuisine">Cuisine:</label>
+     <select name="cuisine">
+        <option value="Italian">Italian</option>
+        <option value="Indian">Indian</option>
+        <option value="Chinese">Chinese</option>
+        <option value="Nepali">Nepali</option>
+     </select>
+
+     
     <!--Price-->
     <label for="price">Price (Rs.):</label>
     <input type="number" name="price" required>
@@ -70,7 +82,7 @@
      <label for="category">Category:</label>
      <select name="category">
         <option value="starter">Starter</option>
-        <option value="main_course">Main Course</option>
+        <option value="main course">Main Course</option>
         <option value="beverages">Beverages</option>
         <option value="dessert">Desserts</option>
      </select>

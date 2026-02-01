@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $price = $_POST['price'];
     $status = $_POST['status'];
     $category = $_POST['category'];
+    $cuisine = $_POST['cuisine'];
 
     if ($dishName === '' || $price === '' || $category === '') {
         $error = "Dish name and price are required";
@@ -40,9 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Price cannot be negative";
     } else {
         $stmt = $conn->prepare(
-        "UPDATE menu SET dishname=?, price=?, category=?, status=?  WHERE id=?"
+        "UPDATE menu SET dishname=?, cuisine=?, price=?, category=?, status=?  WHERE id=?"
         );
-        $stmt->execute([$dishName, $price, $category, $status, $id]);
+        $stmt->execute([$dishName, $cuisine, $price, $category, $status, $id]);
 
         header("Location: admin.php");
         exit;
@@ -68,6 +69,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label>Dish Name:</label><br>
     <input type="text" name="dishname" value="<?= htmlspecialchars($item['dishname']) ?>" required><br><br>
 
+     <label for="cuisine">Cuisine:</label>
+     <select name="cuisine">
+        <option value="Italian">Italian</option>
+        <option value="Indian">Indian</option>
+        <option value="Chinese">Chinese</option>
+        <option value="Nepali">Nepali</option>
+     </select><br><br>
+
+    <!--label Price-->
     <label>Price (Rs.):</label><br>
     <input type="number" name="price" value="<?= htmlspecialchars($item['price']) ?>" required><br><br>
 
@@ -75,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label>Category:</label><br>
         <select name="category" required>
             <option value="starter" <?= $item['category']=='starter' ? 'selected' : '' ?>>Starter</option>
-            <option value="main_course" <?= $item['category']=='main_course' ? 'selected' : '' ?>>Main Course</option>
+            <option value="main_course" <?= $item['category']=='main course' ? 'selected' : '' ?>>Main Course</option>
             <option value="beverages" <?= $item['category']=='beverages' ? 'selected' : '' ?>>Beverages</option>
             <option value="dessert" <?= $item['category']=='dessert' ? 'selected' : '' ?>>Dessert</option>
             </select><br><br>

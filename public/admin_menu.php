@@ -10,7 +10,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 
 // fetch all menu items
-$stmt = $conn->prepare("SELECT * FROM menu ORDER BY id DESC");
+$stmt = $conn->prepare("SELECT * FROM menu ORDER BY id ASC");
 $stmt->execute();
 $menuItems = $stmt->fetchAll();
 ?>
@@ -57,15 +57,17 @@ $menuItems = $stmt->fetchAll();
     <tr>
         <th>ID</th>
         <th>Dish Name</th>
+        <th>Cuisine</th>
         <th>Price (Rs.)</th>
         <th>Status</th>
-         <th>Category</th>
+        <th>Category</th>
     </tr>
 
     <?php foreach ($menuItems as $item): ?>
         <tr>
             <td><?= $item['id'] ?></td>
             <td><?= htmlspecialchars($item['dishname']) ?></td>
+            <td><?= htmlspecialchars($item['cuisine']) ?></td>
             <td><?= number_format($item['price'], 2) ?></td>
             <td><?= htmlspecialchars($item['status']) ?></td>
             <td><?= htmlspecialchars($item['category']) ?></td>
@@ -82,7 +84,7 @@ $menuItems = $stmt->fetchAll();
 </table>
 
 <div style="text-align:center;">
-    <a href="add.php">➕ Add New Menu Item</a>
+    <a href="add.php"> Add New Menu Item</a>
 </div>
 
 </body>

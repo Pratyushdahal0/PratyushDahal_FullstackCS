@@ -1,63 +1,65 @@
 <?php
-include "../includes/admin_header.php";
 session_start();
 if(!isset($_SESSION['admin_logged_in'])){
     header("Location: login.php");
     exit;
 }
+
+include "../includes/admin_header.php";
 require '../config/db.php';
 
-//$stmt = $conn->query("SELECT * FROM orders ORDER BY id DESC");
-//$orders = $stmt->fetchAll();
+// Fetch orders
+$stmt = $conn->query("SELECT * FROM orders ORDER BY id DESC");
+$orders = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin Dashboard</title>
+<title>Admin Dashboard - Orders</title>
+<style>
+table { width: 80%; margin: 20px auto; border-collapse: collapse; }
+th, td { padding: 10px; border: 1px solid #ddd; text-align: center; }
+.status-preparing { color: orange; font-weight: bold; }
+.status-prepared { color: green; font-weight: bold; }
+.view-btn { padding: 4px 8px; background:#007bff; color:white; border:none; border-radius:3px; cursor:pointer; text-decoration:none; }
+.view-btn:hover { background:#0069d9; }
+</style>
 </head>
 <body>
 
-
-
 <main>
-    <div class="section">
-        <h3>Orders</h3>
-        <p>Here you can see all orders and update their status (Preparing / Prepared).</p>
-        <!-- You can later load orders table here -->
-         <table>
+<div class="section">
+<h3>Orders Overview</h3>
+
+<?php if(empty($orders)): ?>
+<p style="text-align:center;">No orders yet.</p>
+<?php else: ?>
+<table>
 <tr>
-  <th>Order ID</th>
-  <th>User</th>
-  <th>Status</th>
+<th>Order ID</th>
+<th>Status</th>
+<th>Total</th>
+<th>Date</th>
+<th>Action</th>
 </tr>
 
 <?php foreach ($orders as $order): ?>
 <tr>
-  <td><?= $order['id'] ?></td>
-  <td><?= htmlspecialchars($order['status']) ?></td>
-  <td>
-    <form method="POST">
-      <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
-      <select name="status">
-        <option value="Preparing">Preparing</option>
-        <option value="Prepared">Prepared</option>
-      </select>
-      <button type="submit">Update</button>
-    </form>
-  </td>
+<td><?= $order['id'] ?></td>
+<td class="<?= $order['status']=='Prepared'?'status-prepared':'status-preparing' ?>"><?= htmlspecialchars($order['status']) ?></td>
+<td>Rs. <?= number_format($order['total_price'],2) ?></td>
+<td><?= htmlspecialchars($order['created_at']) ?></td>
+<td>
+    <a class="view-btn" href="admin_orderstatus.php?order_id=<?= $order['id'] ?>">Update Status</a>
+</td>
 </tr>
 <?php endforeach; ?>
 </table>
-    </div>
+<?php endif; ?>
 
-    <div class="section">
-        <h3>Menu Management</h3>
-        <!-- Link to menu CRUD page -->
-        <a href="admin_menu.php">Go to Menu Management</a>
-    </div>
+</div>
 </main>
 
 </body>
 </html>
-
