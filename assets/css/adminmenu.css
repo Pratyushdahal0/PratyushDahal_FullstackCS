@@ -59,6 +59,7 @@ tr:hover {
 .deletebtn {
     padding: 6px 12px;
     background-color: #f44336;
+    border: none;
     color: white;
     text-decoration: none;
     border-radius: 4px;

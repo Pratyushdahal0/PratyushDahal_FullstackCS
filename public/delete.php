@@ -1,31 +1,42 @@
 <?php
-require '../config/db.php';
 session_start();
+require '../config/db.php';
 
-//if session doesnot matches to admin session then immediatly returns to index
-if(!isset($_SESSION['admin_logged_in'])){
-    header("location: index.php");
+// only admin allowed
+if (!isset($_SESSION['admin_logged_in'])) {
+    header("Location: index.php");
     exit;
 }
 
-// checking if id is provided or not
-if (!isset($_GET['id'])) {
-    header("Location: admin.php");
+// allow only POST
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    die("Invalid request");
+}
+
+// CSRF check
+if (
+    empty($_POST['csrf_token']) ||
+    !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])
+) {
+    die("CSRF validation failed");
+}
+
+// check id
+if (empty($_POST['id'])) {
+    header("Location: admin_menu.php");
     exit;
 }
-$id = $_GET['id'];
-//deleting form menu
+
+$id = (int) $_POST['id'];
+
+// delete from menu
 try {
     $stmt = $conn->prepare("DELETE FROM menu WHERE id = ?");
     $stmt->execute([$id]);
 } catch (PDOException $e) {
-    die("Database Error: " . $e->getMessage());
+    die("Database Error");
 }
 
-// returning back into admin after delete
+// redirect back
 header("Location: admin.php");
-exit
-?>
-
-
-<a href="delete.php?id=<?= $item['id'] ?>">Delete</a>
+exit;

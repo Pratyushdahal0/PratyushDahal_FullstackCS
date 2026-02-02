@@ -1,7 +1,10 @@
 <?php
     require "../config/db.php";
     session_start();
-
+    //CSRF TOKEN
+    if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+  }
     //making sure only admin can use this
     if (!isset($_SESSION['admin_logged_in'])) {
     header("Location: login.php");
@@ -11,6 +14,10 @@
     $error = '';
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+         if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+         die("Invalid CSRF token");
+        }
         $dishName = $_POST['dishname'];
         $price = $_POST['price'];
         $status = $_POST['status'];
@@ -62,6 +69,7 @@
 </head>
 <body>
     <form action="" method="POST">
+    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
     <!--Dish name-->
     <label for="dishname">Dish Name:</label>
     <input type="text" name="dishname" required>

@@ -1,6 +1,10 @@
 <?php
 session_start();
-if(!isset($_SESSION['admin_logged_in'])){
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+if (!isset($_SESSION['admin_logged_in'])) {
     header("Location: login.php");
     exit;
 }
@@ -25,7 +29,7 @@ $orders = $stmt->fetchAll();
 <div class="section">
 <h3>Orders Overview</h3>
 
-<?php if(empty($orders)): ?>
+<?php if (empty($orders)): ?>
 <p style="text-align:center;">No orders yet.</p>
 <?php else: ?>
 <table>
@@ -40,11 +44,19 @@ $orders = $stmt->fetchAll();
 <?php foreach ($orders as $order): ?>
 <tr>
 <td><?= $order['id'] ?></td>
-<td class="<?= $order['status']=='Prepared'?'status-prepared':'status-preparing' ?>"><?= htmlspecialchars($order['status']) ?></td>
-<td>Rs. <?= number_format($order['total_price'],2) ?></td>
+<td class="<?= $order['status'] == 'Prepared' ? 'status-prepared' : 'status-preparing' ?>">
+    <?= htmlspecialchars($order['status']) ?>
+</td>
+<td>Rs. <?= number_format($order['total_price'], 2) ?></td>
 <td><?= htmlspecialchars($order['created_at']) ?></td>
 <td>
-    <a class="view-btn" href="admin_orderstatus.php?order_id=<?= $order['id'] ?>">Update Status</a>
+
+<form method="POST" action="admin_orderstatus.php" style="display:inline;">
+    <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+    <button type="submit" class="view-btn">Update Status</button>
+</form>
+
 </td>
 </tr>
 <?php endforeach; ?>
@@ -56,6 +68,5 @@ $orders = $stmt->fetchAll();
 
 </body>
 </html>
-<?php
-include "../includes/footer.php";
-?>
+
+<?php include "../includes/footer.php"; ?>
