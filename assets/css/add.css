@@ -82,6 +82,75 @@ p a {
 p a:hover {
     text-decoration: underline;
 }
-footer p{
+
+footer p {
     text-align: center;
+}
+
+/* Mobile-Friendly Responsive Enhancements */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    form {
+        padding: 20px;
+        border-width: 1px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    label {
+        font-size: 14px;
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    select {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 12px;
+    }
+    
+    button {
+        padding: 14px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    form {
+        padding: 15px;
+        max-width: 100%;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    select,
+    button {
+        font-size: 16px; 
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    button {
+        min-height: 44px;
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    select {
+        min-height: 44px;
+    }
 }

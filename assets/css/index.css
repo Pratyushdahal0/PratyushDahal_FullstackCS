@@ -3,10 +3,11 @@ body {
     background: #f5f5f5;
 }
 
-.resturant_menu{
-    text-align:center;
+.resturant_menu {
+    text-align: center;
     color: rgb(232, 150, 26);
 }
+
 .menu-container {
     padding: 20px;
 }
@@ -24,7 +25,7 @@ body {
 }
 
 .menu-card h3 {
-     margin: 10px 0;
+    margin: 10px 0;
 }
 
 .price {
@@ -45,43 +46,83 @@ body {
 .order-btn:hover {
     background: #e68900;
 }
+
 .cart_container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px; /* space between icon and text */
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    padding: 15px;
 }
 
 .cart_icon {
-  position: relative;
-  width: 30px;
-  height: 30px;
+    position: relative;
+    width: 30px;
+    height: 30px;
 }
 
 #cartCount {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  background-color: red;
-  color: white;
-  font-size: 12px;
-  width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  font-weight: bold;
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
 }
+
 .material-symbols-outlined {
-  font-family: 'Material Symbols Outlined';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 26px;
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 26px;
 }
-footer p{
+
+footer p {
     text-align: center;
+}
+
+/* Simple Mobile Friendly */
+@media (max-width: 768px) {
+    .menu-container {
+        padding: 10px;
+    }
+    
+    .menu-card {
+        width: calc(50% - 20px);
+        margin: 5px;
+        padding: 12px;
+    }
+    
+    .menu-card h3 {
+        font-size: 16px;
+    }
+    
+    .order-btn {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    
+    .resturant_menu {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-card {
+        width: calc(100% - 20px);
+        margin: 10px;
+    }
+    
+    .cart_container {
+        padding: 10px;
+    }
 }

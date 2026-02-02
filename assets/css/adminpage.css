@@ -4,61 +4,62 @@ body {
     margin: 0;
     padding: 20px;
 }
-        
+
 main {
     max-width: 1200px;
     margin: 0 auto;
 }
-        
+
 .section {
     background: white;
     padding: 30px;
     border-radius: 8px;
     border: 2px solid #f4d03f;
+    overflow-x: auto;
 }
-        
+
 h3 {
     color: #2d8659;
     text-align: center;
     margin-bottom: 30px;
     font-size: 24px;
 }
-        
+
 table {
     width: 100%;
     border-collapse: collapse;
     background: white;
 }
-        
+
 th {
     background-color: #4caf50;
     color: white;
     padding: 12px;
     text-align: center;
     font-weight: bold;
+    white-space: nowrap;
 }
-        
+
 td {
     padding: 12px;
     border: 1px solid #ddd;
     text-align: center;
 }
-        
-        
+
 tr:hover {
-   background-color: #fff9c4;
+    background-color: #fff9c4;
 }
-        
+
 .status-preparing {
-   color: #ff9800;
+    color: #ff9800;
     font-weight: bold;
 }
-        
+
 .status-prepared {
     color: #4caf50;
     font-weight: bold;
 }
-        
+
 .view-btn {
     padding: 8px 15px;
     background-color: #4caf50;
@@ -68,18 +69,77 @@ tr:hover {
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-        }
-        
+}
+
 .view-btn:hover {
     background-color: #45a049;
 }
-        
+
 .no-orders {
     text-align: center;
     color: #666;
     padding: 40px;
     font-size: 18px;
 }
-footer p{
+
+footer p {
     text-align: center;
+}
+
+/* Simple Mobile Friendly */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .section {
+        padding: 15px;
+        border-width: 1px;
+    }
+    
+    h3 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    table {
+        font-size: 12px;
+        min-width: 500px;
+    }
+    
+    th, td {
+        padding: 8px 4px;
+        font-size: 11px;
+    }
+    
+    .view-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    
+    .no-orders {
+        font-size: 16px;
+        padding: 30px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section {
+        padding: 10px;
+    }
+    
+    table {
+        font-size: 11px;
+        min-width: 450px;
+    }
+    
+    th, td {
+        padding: 6px 3px;
+        font-size: 10px;
+    }
+    
+    .view-btn {
+        padding: 5px 8px;
+        font-size: 11px;
+    }
 }

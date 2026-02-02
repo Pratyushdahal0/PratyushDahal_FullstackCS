@@ -129,7 +129,6 @@ form a:hover {
     background-color: #e68900;
 }
 
-/* Menu Container */
 .menu-container {
     padding: 30px 20px;
     text-align: center;
@@ -194,8 +193,6 @@ form a:hover {
     background-color: #45a049;
 }
 
-/* Place Order Button */
-
 .place-order-btn:hover {
     background-color: #45a049;
 }
@@ -209,4 +206,75 @@ form a:hover {
 
 footer p {
     text-align: center;
+}
+
+@media (max-width: 768px) {
+    .filter-section {
+        padding: 15px 10px;
+    }
+    
+    form {
+        gap: 10px;
+    }
+    
+    .form-group {
+        width: 100%;
+    }
+    
+    input[type="number"],
+    select {
+        width: 100%;
+        min-width: 100%;
+        font-size: 16px;
+        padding: 12px;
+    }
+    
+    button[type="submit"],
+    form a {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+    
+    .menu-container {
+        padding: 15px 10px;
+    }
+    
+    .menu-card {
+        width: calc(50% - 20px);
+        margin: 5px;
+        padding: 15px;
+    }
+    
+    .menu-card h3 {
+        font-size: 16px;
+    }
+    
+    .price {
+        font-size: 18px;
+    }
+    
+    .order-btn {
+        width: 100%;
+    }
+    
+    .resturant_menu {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-card {
+        width: calc(100% - 20px);
+        margin: 10px;
+    }
+    
+    .cart_container {
+        padding: 10px;
+    }
+    
+    .no-results {
+        font-size: 16px;
+        padding: 40px 15px;
+    }
 }

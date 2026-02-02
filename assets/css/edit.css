@@ -65,3 +65,31 @@ button:hover {
     text-align: center;
     margin-bottom: 15px;
 }
+
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    h2 {
+        font-size: 22px;
+    }
+    
+    form {
+        padding: 20px;
+        border-width: 1px;
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    select {
+        font-size: 16px;
+        padding: 12px;
+    }
+    
+    button {
+        padding: 14px;
+        font-size: 16px;
+    }
+}

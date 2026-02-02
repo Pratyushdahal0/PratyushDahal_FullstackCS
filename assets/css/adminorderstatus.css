@@ -10,9 +10,15 @@ h2 {
     margin-bottom: 30px;
 }
 
-table {
+.table-wrapper {
     width: 90%;
     margin: 20px auto;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    width: 100%;
     background: white;
     border-collapse: collapse;
     border: 2px solid #f4d03f;
@@ -23,6 +29,7 @@ th {
     color: white;
     padding: 12px;
     text-align: center;
+    white-space: nowrap;
 }
 
 td {
@@ -81,6 +88,73 @@ p {
     color: #666;
     font-size: 18px;
 }
-footer p{
+
+footer p {
     text-align: center;
+}
+
+/* Simple Mobile Friendly */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .table-wrapper {
+        width: 100%;
+    }
+    
+    table {
+        font-size: 12px;
+        border: 1px solid #f4d03f;
+        min-width: 600px;
+    }
+    
+    th, td {
+        padding: 8px 4px;
+        font-size: 11px;
+    }
+    
+    select {
+        padding: 6px 4px;
+        font-size: 12px;
+        min-width: 80px;
+    }
+    
+    button {
+        padding: 6px 8px;
+        font-size: 11px;
+        margin: 2px;
+    }
+    
+    .message {
+        max-width: 95%;
+        font-size: 14px;
+    }
+    
+    p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    table {
+        min-width: 550px;
+        font-size: 11px;
+    }
+    
+    th, td {
+        padding: 6px 3px;
+        font-size: 10px;
+    }
+    
+    select {
+        padding: 5px 3px;
+        font-size: 11px;
+        min-width: 70px;
+    }
+    
+    button {
+        padding: 5px 6px;
+        font-size: 10px;
+    }
 }
