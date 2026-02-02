@@ -1,12 +1,13 @@
 This is the Restaurant management system.
-==Login Credential==
+
+**Login Credential**
 Email: admin@gmail.com
 Password: admin@123
 
-==Set Up==
+**Set Up**
 Provide link in the file will be ready to be work on
 
-==Features Implemented==
+**Features Implemented**
 Admin authentication using PHP sessions
 Secure login and logout functionality
 Database connectivity using MySQL
@@ -16,7 +17,7 @@ Admin dashboard
 Form validation
 Confirmation prompts for delete actions
 
-==Known Issues==
+**Known Issues**
 UI is basic and not fully responsive
 No new admin can be created
 More need to be focused on error handling
