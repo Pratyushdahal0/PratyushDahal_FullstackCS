@@ -1,7 +1,7 @@
 <?php
-$server = "mysql:host=localhost;dbname=restaurant_system";
-$user = "root";
-$password = "";
+$server = "mysql:host=localhost;dbname=np03cs4a240192";
+$user = "np03cs4a240192";
+$password = "Pratyush2005";
 
 //connecting to the database using pdo
 try{
