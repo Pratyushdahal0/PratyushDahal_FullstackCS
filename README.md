@@ -1,13 +1,16 @@
-This is the Restaurant management system.
+#This is the Restaurant management system made by Pratyush Dahal.
 
 **Login Credential**
+
 Email: admin@gmail.com
 Password: admin@123
 
 **Set Up**
+
 Provide link in the file will be ready to be work on
 
 **Features Implemented**
+
 Admin authentication using PHP sessions
 Secure login and logout functionality
 Database connectivity using MySQL
@@ -18,6 +21,7 @@ Form validation
 Confirmation prompts for delete actions
 
 **Known Issues**
+
 UI is basic and not fully responsive
 No new admin can be created
 More need to be focused on error handling
