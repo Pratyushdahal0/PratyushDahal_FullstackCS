@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         );
         $stmt->execute([$dishName, $cuisine, $price, $category, $status, $id]);
 
-        header("Location: admin.php");
+        header("Location: admin_menu.php");
         exit;
     }
 }
