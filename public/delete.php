@@ -38,5 +38,5 @@ try {
 }
 
 // redirect back
-header("Location: admin.php");
+header("Location: admin_menu.php");
 exit;

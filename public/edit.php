@@ -13,12 +13,21 @@ if (!isset($_SESSION['admin_logged_in'])) {
     exit;
 }
 
-
-if (!isset($_POST['id'])) {
-    header("Location: admin.php");
-    exit;
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if (!isset($_GET['id'])) {
+        header("Location: admin.php");
+        exit;
+    }
+    $id = $_GET['id'];
 }
-$id = $_POST['id'];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['id'])) {
+        header("Location: admin.php");
+        exit;
+    }
+    $id = $_POST['id'];
+}
 
 
 $stmt = $conn->prepare("SELECT * FROM menu WHERE id = ?");

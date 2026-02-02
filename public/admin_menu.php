@@ -52,10 +52,9 @@ $menuItems = $stmt->fetchAll();
 <td><?= htmlspecialchars($item['category']) ?></td>
 <td>
 
-<!-- EDIT (unchanged) -->
-<a class="editbtn" href="edit.php?id=<?= $item['id'] ?>">Edit</a>
 
-<!-- DELETE (CHANGED: POST + CSRF, SAME CLASS) -->
+<a class="editbtn" href="edit.php?id=<?php echo $item['id']; ?>">Edit</a>
+
 <form action="delete.php" method="POST" style="display:inline;"
       onsubmit="return confirm('Are you sure you want to delete this item?');">
     <input type="hidden" name="id" value="<?= $item['id'] ?>">
